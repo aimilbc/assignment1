@@ -73,7 +73,7 @@ int csGODs::johnny(vector<int> &lists, int left, int right){
 
     int maxRightBorder = 0;
     int rightBorder = 0;
-    for (int i = center + 1; i < right; i++) {
+    for (int i = center + 1; i <= right; i++) {
         rightBorder += lists[i];
         if(rightBorder > maxRightBorder)
             maxRightBorder = rightBorder;
