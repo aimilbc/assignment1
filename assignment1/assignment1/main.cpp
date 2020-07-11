@@ -11,23 +11,18 @@
 #include <random>
 #include <algorithm>
 #include <chrono>
+#include "csGODs.h"
 
 using namespace std;
 
 int mainMenu();
 void createVector(vector<int> &);
-int freddy(vector<int> &);
-int sophie(vector<int> &);
-int johnny(vector<int> &, int, int);
-int sally(vector<int> &);
-bool comp(int a, int b)
-{
-    return (a < b);
-}
 
 int main(int argc, const char * argv[]) {
     vector<int> lists;
     int maxNum = 0;
+    
+    csGODs algorithms;
     
     int pickedNum = mainMenu();
     /*=================== Main Menu ===================
@@ -48,7 +43,7 @@ int main(int argc, const char * argv[]) {
 //                    cout << element << endl;
 //                }
                 auto start = chrono::high_resolution_clock::now();
-                maxNum = freddy(lists);
+                maxNum = algorithms.freddy(lists);
                 auto end = chrono::high_resolution_clock::now();
                 cout << "max subarray is " << maxNum << "." << endl;
                 chrono::duration<float> duration = end - start;
@@ -65,7 +60,7 @@ int main(int argc, const char * argv[]) {
 //                    cout << element << endl;
 //                }
                 auto start = chrono::high_resolution_clock::now();
-                maxNum = sophie(lists);
+                maxNum = algorithms.sophie(lists);
                 auto end = chrono::high_resolution_clock::now();
                 cout << "max subarray is " << maxNum << "." << endl;
                 chrono::duration<float> duration = end - start;
@@ -82,7 +77,8 @@ int main(int argc, const char * argv[]) {
 //                    cout << element << endl;
 //                }
                 auto start = chrono::high_resolution_clock::now();
-                maxNum = johnny(lists, 0, lists.size()-1);
+                maxNum = (lists.size() > 0) ? algorithms.johnny(lists, 0, lists.size()-1) : 0;
+                //maxNum = johnny(lists, 0, lists.size()-1);
                 auto end = chrono::high_resolution_clock::now();
                 cout << "max subarray is " << maxNum << "." << endl;
                 chrono::duration<float> duration = end - start;
@@ -99,7 +95,7 @@ int main(int argc, const char * argv[]) {
 //                    cout << element << endl;
 //                }
                 auto start = chrono::high_resolution_clock::now();
-                maxNum = sally(lists);
+                maxNum = algorithms.sally(lists);
                 auto end = chrono::high_resolution_clock::now();
                 cout << "max subarray is " << maxNum << "." << endl;
                 chrono::duration<float> duration = end - start;
@@ -150,76 +146,54 @@ void createVector(vector<int> &lists){
     
 }
 
-int freddy(vector<int> &lists){
-    int max = 0;
-    
-    for (int i = 0; i < lists.size(); i++){
-        for (int j = i; j < lists.size(); j++){
-            int thisSum = 0;
-            for(int k = i; k <= j; k++)
-                thisSum += lists[k];
-            if (thisSum > max)
-                max = thisSum;
-        }
-    }
-    return max;
-}
 
-int sophie(vector<int> &lists){
-    int max = 0;
-    
-    for (int i = 0; i < lists.size(); i++){
-        int thisSum = 0;
-        for(int j = i; j < lists.size(); j++){
-            thisSum += lists[j];
-            if(thisSum > max)
-                max = thisSum;
-        }
-    }
-    
-    return max;
-}
-
-int johnny(vector<int> &lists, int left, int right){
-    
-    if (left == right) {
-        if(left > 0)
-            return lists[left];
-        return 0;
-    }
-    
-    int center = floor((left + right)/2);
-    int maxLeftSum = johnny(lists, left, center);
-    int maxRightSum = johnny(lists, center + 1, right);
-    
-    int maxLeftBorder = 0;
-    int leftBorder = 0;
-    for (int i = center; i >= left; i--) {
-        leftBorder += lists[i];
-        if(leftBorder > maxLeftBorder)
-            maxLeftBorder = leftBorder;
-    }
-    
-    int maxRightBorder = 0;
-    int rightBorder = 0;
-    for (int i = center + 1; i < right; i++) {
-        rightBorder += lists[i];
-        if(rightBorder > maxRightBorder)
-            maxRightBorder = rightBorder;
-    }
-    
-    return max({maxLeftSum, maxRightSum, maxLeftBorder + maxRightBorder},comp);
-}
-
-int sally(vector<int> &lists){
-    int max = 0;
-    int thisSum = 0;
-    for(int i = 0; i < lists.size(); i++){
-        thisSum += lists[i];
-        if(thisSum > max)
-            max = thisSum;
-        else if(thisSum<0)
-            thisSum = 0;
-    }
-    return max;
-}
+//int mainTest(int argc, const char * argv[]) {
+//
+//    vector<int> lists1;
+//    vector<int> lists2;
+//    vector<int> lists3;
+//    vector<int> lists4;
+//    vector<int> lists5;
+//    vector<int> lists6;
+//
+//    mt19937 mt_rand(1);
+//    uniform_int_distribution<int> rangeSet(-100, 100);
+//    uniform_int_distribution<int> rangeSet2(-100, 0);
+//    uniform_int_distribution<int> rangeSet3(0, 100);
+//
+//    // test case 1: some + and some - with array size 10
+//    for (int i = 0; i < 10; i++){
+//        lists1.push_back(rangeSet(mt_rand));
+//    }
+//
+//    // test case 2: some + and some - with array size 11
+//    for (int i = 0; i < 11; i++){
+//        lists2.push_back(rangeSet(mt_rand));
+//    }
+//
+//    // test case 3 is already defined at the top(an array with no valuse)
+//
+//    // test case 4: all - with array size 10
+//    for (int i = 0; i < 10; i++){
+//        lists4.push_back(rangeSet2(mt_rand));
+//    }
+//
+//    // test case 4: all 0 with array size 10
+//    for (int i = 0; i < 10; i++){
+//        lists4.push_back(0);
+//    }
+//
+//    // test case 4: all + with array size 10
+//    for (int i = 0; i < 10; i++){
+//        lists4.push_back(rangeSet3(mt_rand));
+//    }
+//
+//    int maxNum1 = freddy(lists1);
+//    cout << "Freddy found max subarray is " << maxNum1 << "." << endl;
+//
+//    int maxNum2 = sophie(lists1);
+//    cout << "Sophie found max subarray is " << maxNum2 << "." << endl;
+//
+//    return 0;
+//}
+//
