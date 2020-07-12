@@ -35,14 +35,17 @@ int main(int argc, const char * argv[]) {
 
     // executs program while input is not 1
     while (pickedNum != 1){
+        
+        createVector(lists);
+        
         switch (pickedNum) {
             case 2:{
                 cout << "Freddy's algorithm" << endl;
                 
-                createVector(lists);
                 auto start = chrono::high_resolution_clock::now();
                 maxNum = algorithms.freddy(lists);
                 auto end = chrono::high_resolution_clock::now();
+                
                 cout << "max subarray is " << maxNum << "." << endl;
                 chrono::duration<float> duration = end - start;
                 cout << duration.count() * 1000.0f << "ms" << endl;
@@ -53,7 +56,6 @@ int main(int argc, const char * argv[]) {
             case 3:{
                 cout << "Sophie's algorithm" << endl;
                 
-                createVector(lists);
                 auto start = chrono::high_resolution_clock::now();
                 maxNum = algorithms.sophie(lists);
                 auto end = chrono::high_resolution_clock::now();
@@ -67,7 +69,6 @@ int main(int argc, const char * argv[]) {
             case 4:{
                 cout << "Johnny's algorithm" << endl;
 
-                createVector(lists);
                 auto start = chrono::high_resolution_clock::now();
                 //maxNum = (lists.size() > 0) ? algorithms.johnny(lists, 0, lists.size()-1) : 0;    // source from Michael Barela
                 if(lists.size() > 0)
@@ -83,7 +84,6 @@ int main(int argc, const char * argv[]) {
             case 5:{
                 cout << "Sally's algorithm" << endl;
 
-                createVector(lists);
                 auto start = chrono::high_resolution_clock::now();
                 maxNum = algorithms.sally(lists);
                 auto end = chrono::high_resolution_clock::now();
@@ -134,6 +134,7 @@ void createVector(vector<int> &lists){
         lists.push_back(rangeSet(mt_rand));
     }
 }
+
 
 //int main(int argc, const char * argv[]) {
 //
