@@ -15,7 +15,6 @@ class csGODs{
     int right;
     int left;
 public:
-    csGODs();
     int freddy(vector<int> &);
     int sophie(vector<int> &);
     int johnny(vector<int> &, int, int);

@@ -22,7 +22,6 @@ void findMax(vector<int> &);
 int main(int argc, const char * argv[]) {
     vector<int> lists;
     int maxNum = 0;
-
     csGODs algorithms;
 
     int pickedNum = mainMenu();
@@ -31,65 +30,77 @@ int main(int argc, const char * argv[]) {
      2. Time Freddy's algorithm
      3. Time Sophie's algorithm
      4. Time Johnny's algorithm
-     5. Time Sally's algorithm*/
+     5. Time Sally's algorithm
+     */
 
     // executs program while input is not 1
     while (pickedNum != 1){
-        
+
         createVector(lists);
-        
+
         switch (pickedNum) {
             case 2:{
                 cout << "Freddy's algorithm" << endl;
+                for (int i = 0; i < 10; i++){
+                    
+                    auto start = chrono::high_resolution_clock::now();  // start timing
+                    maxNum = algorithms.freddy(lists);
+                    auto end = chrono::high_resolution_clock::now();    // end timing
+
+                    chrono::duration<float> duration = end - start;     // calculation
+                    cout << duration.count() * 1000.0f << "ms" << endl;
+                }
                 
-                auto start = chrono::high_resolution_clock::now();
-                maxNum = algorithms.freddy(lists);
-                auto end = chrono::high_resolution_clock::now();
-                
-                cout << "max subarray is " << maxNum << "." << endl;
-                chrono::duration<float> duration = end - start;
-                cout << duration.count() * 1000.0f << "ms" << endl;
-                lists.clear();
+                lists.clear();                                      // clear the list
                 break;
             }
 
             case 3:{
                 cout << "Sophie's algorithm" << endl;
+                for (int i = 0; i < 10; i++){
+                    
+                    auto start = chrono::high_resolution_clock::now();
+                    maxNum = algorithms.sophie(lists);
+                    auto end = chrono::high_resolution_clock::now();
+                    
+                    chrono::duration<float> duration = end - start;
+                    cout << duration.count() * 1000.0f << "ms" << endl;
+                }
                 
-                auto start = chrono::high_resolution_clock::now();
-                maxNum = algorithms.sophie(lists);
-                auto end = chrono::high_resolution_clock::now();
-                cout << "max subarray is " << maxNum << "." << endl;
-                chrono::duration<float> duration = end - start;
-                cout << duration.count() * 1000.0f << "ms" << endl;
                 lists.clear();
                 break;
             }
 
             case 4:{
                 cout << "Johnny's algorithm" << endl;
-
-                auto start = chrono::high_resolution_clock::now();
-                //maxNum = (lists.size() > 0) ? algorithms.johnny(lists, 0, lists.size()-1) : 0;    // source from Michael Barela
-                if(lists.size() > 0)
-                    maxNum = algorithms.johnny(lists, 0, (int)lists.size()-1);
-                auto end = chrono::high_resolution_clock::now();
-                cout << "max subarray is " << maxNum << "." << endl;
-                chrono::duration<float> duration = end - start;
-                cout << duration.count() * 1000.0f << "ms" << endl;
+                for (int i = 0; i < 10; i++){
+                    
+                    auto start = chrono::high_resolution_clock::now();
+                    //maxNum = (lists.size() > 0) ? algorithms.johnny(lists, 0, lists.size()-1) : 0;    // ternary operator. learned from Michael Barela
+                    if(lists.size() > 0)
+                        maxNum = algorithms.johnny(lists, 0, (int)lists.size()-1);
+                    auto end = chrono::high_resolution_clock::now();
+                    
+                    chrono::duration<float> duration = end - start;
+                    cout << duration.count() * 1000.0f << "ms" << endl;
+                }
+                
                 lists.clear();
                 break;
             }
 
             case 5:{
                 cout << "Sally's algorithm" << endl;
-
-                auto start = chrono::high_resolution_clock::now();
-                maxNum = algorithms.sally(lists);
-                auto end = chrono::high_resolution_clock::now();
-                cout << "max subarray is " << maxNum << "." << endl;
-                chrono::duration<float> duration = end - start;
-                cout << duration.count() * 1000.0f << "ms" << endl;
+                for (int i = 0; i < 10; i++){
+                    
+                    auto start = chrono::high_resolution_clock::now();
+                    maxNum = algorithms.sally(lists);
+                    auto end = chrono::high_resolution_clock::now();
+                    
+                    chrono::duration<float> duration = end - start;
+                    cout << duration.count() * 1000.0f << "ms" << endl;
+                }
+                
                 lists.clear();
                 break;
             }
@@ -137,8 +148,6 @@ void createVector(vector<int> &lists){
 
 
 //int main(int argc, const char * argv[]) {
-//
-//
 //
 //    vector<int> lists1;
 //    vector<int> lists2;

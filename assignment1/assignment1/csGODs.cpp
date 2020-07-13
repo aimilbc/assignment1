@@ -12,13 +12,9 @@
 #include <iostream>
 #include <cmath>
 
-bool comp(int a, int b)
+bool compareNum(int a, int b)
 {
     return (a < b);
-}
-
-csGODs::csGODs(){
-
 }
 
 int csGODs::freddy(vector<int> &lists){
@@ -79,7 +75,7 @@ int csGODs::johnny(vector<int> &lists, int left, int right){
             maxRightBorder = rightBorder;
     }
 
-    return max({maxLeftSum, maxRightSum, maxLeftBorder + maxRightBorder},comp);
+    return max({maxLeftSum, maxRightSum, maxLeftBorder + maxRightBorder},compareNum);
 }
 
 int csGODs::sally(vector<int> &lists){
