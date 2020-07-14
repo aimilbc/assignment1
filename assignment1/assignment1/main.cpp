@@ -17,7 +17,11 @@ using namespace std;
 
 int mainMenu();
 void createVector(vector<int> &);
-void findMax(vector<int> &);
+void findMax(vector<int> &);        // using for test main
+
+/*
+The top main is an observation main, and the bottom main is a test main. One of them should be commented out while using the other.
+ */
 
 int main(int argc, const char * argv[]) {
     vector<int> lists;
@@ -44,10 +48,10 @@ int main(int argc, const char * argv[]) {
                 for (int i = 0; i < 10; i++){
                     
                     auto start = chrono::high_resolution_clock::now();  // start timing
-                    maxNum = algorithms.freddy(lists);
+                    maxNum = algorithms.freddy(lists);                  // finding the maximum subarray
                     auto end = chrono::high_resolution_clock::now();    // end timing
 
-                    chrono::duration<float> duration = end - start;     // calculation
+                    chrono::duration<float> duration = end - start;     // calculation for duration time
                     cout << duration.count() * 1000.0f << "ms" << endl;
                 }
                 
@@ -59,11 +63,11 @@ int main(int argc, const char * argv[]) {
                 cout << "Sophie's algorithm" << endl;
                 for (int i = 0; i < 10; i++){
                     
-                    auto start = chrono::high_resolution_clock::now();
-                    maxNum = algorithms.sophie(lists);
-                    auto end = chrono::high_resolution_clock::now();
-                    
-                    chrono::duration<float> duration = end - start;
+                    auto start = chrono::high_resolution_clock::now();  // start timing
+                    maxNum = algorithms.sophie(lists);                  // finding the maximum subarray
+                    auto end = chrono::high_resolution_clock::now();    // end timing
+
+                    chrono::duration<float> duration = end - start;     // calculation for duration time
                     cout << duration.count() * 1000.0f << "ms" << endl;
                 }
                 
@@ -75,13 +79,13 @@ int main(int argc, const char * argv[]) {
                 cout << "Johnny's algorithm" << endl;
                 for (int i = 0; i < 10; i++){
                     
-                    auto start = chrono::high_resolution_clock::now();
-                    //maxNum = (lists.size() > 0) ? algorithms.johnny(lists, 0, lists.size()-1) : 0;    // ternary operator. learned from Michael Barela
+                    auto start = chrono::high_resolution_clock::now();              // start timing
+                    //maxNum = (lists.size() > 0) ? algorithms.johnny(lists, 0, lists.size()-1) : 0;    // :ternary operator. learned from Michael Barela
                     if(lists.size() > 0)
-                        maxNum = algorithms.johnny(lists, 0, (int)lists.size()-1);
-                    auto end = chrono::high_resolution_clock::now();
-                    
-                    chrono::duration<float> duration = end - start;
+                        maxNum = algorithms.johnny(lists, 0, (int)lists.size()-1);  // finding the maximum subarray if vector size > 0
+                    auto end = chrono::high_resolution_clock::now();                // end timing
+
+                    chrono::duration<float> duration = end - start;                 // calculation for duration time
                     cout << duration.count() * 1000.0f << "ms" << endl;
                 }
                 
@@ -93,11 +97,11 @@ int main(int argc, const char * argv[]) {
                 cout << "Sally's algorithm" << endl;
                 for (int i = 0; i < 10; i++){
                     
-                    auto start = chrono::high_resolution_clock::now();
-                    maxNum = algorithms.sally(lists);
-                    auto end = chrono::high_resolution_clock::now();
-                    
-                    chrono::duration<float> duration = end - start;
+                    auto start = chrono::high_resolution_clock::now();  // start timing
+                    maxNum = algorithms.sally(lists);                  // finding the maximum subarray
+                    auto end = chrono::high_resolution_clock::now();    // end timing
+
+                    chrono::duration<float> duration = end - start;     // calculation for duration time
                     cout << duration.count() * 1000.0f << "ms" << endl;
                 }
                 
@@ -146,6 +150,7 @@ void createVector(vector<int> &lists){
     }
 }
 
+// ================================= main function for test =================================
 
 //int main(int argc, const char * argv[]) {
 //

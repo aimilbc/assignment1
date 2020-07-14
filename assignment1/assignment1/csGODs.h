@@ -21,6 +21,4 @@ public:
     int sally(vector<int> &);
 };
 
-
-
 #endif /* csGODs_h */

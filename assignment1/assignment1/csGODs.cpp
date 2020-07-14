@@ -9,14 +9,15 @@
 #include <stdio.h>
 #include "csGODs.h"
 #include <iostream>
-#include <iostream>
 #include <cmath>
+#include <algorithm>
 
 bool compareNum(int a, int b)
 {
     return (a < b);
 }
 
+// Freddy's Algorithm = n^3
 int csGODs::freddy(vector<int> &lists){
     int max = 0;
 
@@ -32,6 +33,7 @@ int csGODs::freddy(vector<int> &lists){
     return max;
 }
 
+// Sophie's Algorithm = n^2
 int csGODs::sophie(vector<int> &lists){
     int max = 0;
 
@@ -43,10 +45,10 @@ int csGODs::sophie(vector<int> &lists){
                 max = thisSum;
         }
     }
-
     return max;
 }
 
+// Jonny's Algorithm = n log(n)
 int csGODs::johnny(vector<int> &lists, int left, int right){
 
     if (left == right) {
@@ -74,10 +76,10 @@ int csGODs::johnny(vector<int> &lists, int left, int right){
         if(rightBorder > maxRightBorder)
             maxRightBorder = rightBorder;
     }
-
     return max({maxLeftSum, maxRightSum, maxLeftBorder + maxRightBorder},compareNum);
 }
 
+// Sally's Algorithm = n
 int csGODs::sally(vector<int> &lists){
     int max = 0;
     int thisSum = 0;
